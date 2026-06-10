@@ -5,18 +5,22 @@ import type { Project } from "../types";
 
 const GLASS = {
   background: "rgba(255,255,255,0.55)",
-  backdropFilter: "blur(28px) saturate(200%)",
-  WebkitBackdropFilter: "blur(28px) saturate(200%)",
+  backdropFilter: "blur(12px) saturate(180%)",
+  WebkitBackdropFilter: "blur(12px) saturate(180%)",
   border: "1px solid rgba(255,255,255,0.85)",
-  boxShadow: "0 4px 28px rgba(0,0,0,0.07), inset 0 1px 0 rgba(255,255,255,0.9)"
+  boxShadow: "0 4px 28px rgba(0,0,0,0.07), inset 0 1px 0 rgba(255,255,255,0.9)",
+  willChange: "backdrop-filter, transform",
+  transform: "translate3d(0,0,0)"
 } as const;
 
 const GLASS_STRONG = {
   background: "rgba(255,255,255,0.72)",
-  backdropFilter: "blur(40px) saturate(220%)",
-  WebkitBackdropFilter: "blur(40px) saturate(220%)",
+  backdropFilter: "blur(18px) saturate(180%)",
+  WebkitBackdropFilter: "blur(18px) saturate(180%)",
   border: "1px solid rgba(255,255,255,0.95)",
-  boxShadow: "0 8px 48px rgba(0,0,0,0.09), inset 0 1px 0 rgba(255,255,255,1)"
+  boxShadow: "0 8px 48px rgba(0,0,0,0.09), inset 0 1px 0 rgba(255,255,255,1)",
+  willChange: "backdrop-filter, transform",
+  transform: "translate3d(0,0,0)"
 } as const;
 
 const roles = ["AI", "Web Development", "UI/UX Design", "IoT", "Robotics", "Electronics", "Product Design", "Creative Media", "Graphic Design", "Video Editing", "Frontend Dev", "Backend Dev"];
@@ -44,7 +48,7 @@ function getYoutubeId(url: string): string | null {
 
 function FloatingOrb({ style }: { style: React.CSSProperties }) {
   return (
-    <motion.div className="absolute rounded-full pointer-events-none" style={style}
+    <motion.div className="absolute rounded-full pointer-events-none" style={{ ...style, willChange: "transform" }}
       animate={{ y: [0, -30, 0], x: [0, 15, 0], scale: [1, 1.06, 1] }}
       transition={{ duration: 8 + Math.random() * 4, repeat: Infinity, ease: "easeInOut" }} />
   );
@@ -328,10 +332,10 @@ export default function Portfolio() {
         style={{ width: progressWidth, background: "linear-gradient(90deg,#1d1d1f,#6e6e73)", transformOrigin: "left" }} />
 
       <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-        <FloatingOrb style={{ top: "-8%", right: "5%", width: 600, height: 600, background: "radial-gradient(circle,rgba(170,175,210,0.5) 0%,transparent 65%)", filter: "blur(50px)" }} />
-        <FloatingOrb style={{ top: "35%", left: "-6%", width: 480, height: 480, background: "radial-gradient(circle,rgba(195,205,225,0.4) 0%,transparent 65%)", filter: "blur(70px)" }} />
-        <FloatingOrb style={{ bottom: "8%", right: "12%", width: 550, height: 550, background: "radial-gradient(circle,rgba(185,178,215,0.35) 0%,transparent 65%)", filter: "blur(90px)" }} />
-        <FloatingOrb style={{ top: "55%", left: "35%", width: 380, height: 380, background: "radial-gradient(circle,rgba(210,200,230,0.25) 0%,transparent 65%)", filter: "blur(80px)" }} />
+        <FloatingOrb style={{ top: "-8%", right: "5%", width: 600, height: 600, background: "radial-gradient(circle,rgba(170,175,210,0.35) 0%,rgba(170,175,210,0.15) 30%,rgba(170,175,210,0.05) 55%,transparent 70%)" }} />
+        <FloatingOrb style={{ top: "35%", left: "-6%", width: 480, height: 480, background: "radial-gradient(circle,rgba(195,205,225,0.3) 0%,rgba(195,205,225,0.1) 30%,rgba(195,205,225,0.03) 55%,transparent 70%)" }} />
+        <FloatingOrb style={{ bottom: "8%", right: "12%", width: 550, height: 550, background: "radial-gradient(circle,rgba(185,178,215,0.25) 0%,rgba(185,178,215,0.08) 30%,rgba(185,178,215,0.02) 55%,transparent 70%)" }} />
+        <FloatingOrb style={{ top: "55%", left: "35%", width: 380, height: 380, background: "radial-gradient(circle,rgba(210,200,230,0.2) 0%,rgba(210,200,230,0.06) 30%,rgba(210,200,230,0.01) 55%,transparent 70%)" }} />
       </div>
 
       {/* NAV */}
